@@ -3,6 +3,7 @@ import ImgSlider from "./ImgSlider";
 import Viewers from "./Viewers";
 import Recommends from "./Recommends";
 import NewDisney from "./NewDisney";
+import Originals from "./Originals";
 import Trending from "./Trending";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,7 +23,7 @@ const Home = (props) => {
     console.log("hello");
     db.collection("movies").onSnapshot((snapshot) => {
       snapshot.docs.map((doc) => {
-        //console.log(recommends);
+        console.log(recommends);
         switch (doc.data().type) {
           case "recommend":
             recommends = [...recommends, { id: doc.id, ...doc.data() }];
@@ -52,13 +53,16 @@ const Home = (props) => {
       );
     });
   }, [userName]);
+   
+
     return(
         <Container>
             <ImgSlider />
             <Viewers />
-            <Recommends />
+             <Recommends />
             <NewDisney />
-            <Trending />
+            <Originals />
+           <Trending />
         </Container>
     )
 
